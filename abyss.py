@@ -27,8 +27,7 @@ total_pages = int(response.get('@attr').get('totalPages'))
 prev_track = response.get('track')[0].get('artist').get('#text') + ' - '+ \
              response.get('track')[0].get('name')
 print(prev_track)
-
-for page in range (1, total_pages):
+for page in range(1, total_pages):
     print(page)
     time.sleep(0.25)
 
