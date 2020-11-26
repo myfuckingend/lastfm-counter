@@ -9,7 +9,7 @@ def request_one_page(username):
         'method': 'user.getrecenttracks',
         'api_key': '3f8c9de617c17cf1baa38831df0a1eca',
         'format': 'json',
-        'limit': '50',
+        'limit': '100',
         'page': '1'
     }
     data = requests.get('http://ws.audioscrobbler.com/2.0/',
