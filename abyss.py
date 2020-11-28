@@ -14,7 +14,7 @@ def request_one_page(username, page_number):
         'method': 'user.getrecenttracks',
         'api_key': API_KEY,
         'format': 'json',
-        'limit': '10',
+        'limit': '1000',
         'page': page_number
     }
     r = requests.get(BASE_API_LINK, params=params)
@@ -34,7 +34,7 @@ print('Total pages to parse:', total_pages)
 counter = collections.Counter()
 print(counter)
 a = 0
-for page in range(1, 6):
+for page in range(1, total_pages+1):
     current_page = request_one_page(username, page).get('track')
     print('Current page:', page)
     for track in current_page:
@@ -45,6 +45,7 @@ for page in range(1, 6):
                          track.get('name')
             if prev_track != curr_track:
                 prev_track = curr_track
+                a = 0
                 if counter[curr_track]:
                     for i in range(1, 10000000):
                         if counter[curr_track + ' (another portion ' + str(i) + ')']:
@@ -57,4 +58,4 @@ for page in range(1, 6):
             else:
                 counter[curr_track + ' (another portion ' + str(a) + ')'] += 1
     time.sleep(0.25)
-print(counter.most_common(10))
+print(counter.most_common(20))
